@@ -46,3 +46,6 @@ Coloque a connection string do Neon em `backend/.env` (DATABASE_URL) e rode:
 cd backend
 npm run migrate
 ```
+
+## Deploy
+Veja `docs/deploy.md`.

@@ -5,9 +5,27 @@ import companiesRoutes from "./routes/companies.routes.js";
 
 const app = express();
 
-const allowedOrigins = (process.env.CORS_ORIGIN || "http://localhost:5173")
+const isProduction = process.env.NODE_ENV === "production";
+
+// Lê CORS_ORIGIN (aceita vários domínios separados por vírgula)
+// e remove espaços e barras no final.
+const configuredOrigins = (process.env.CORS_ORIGIN || "")
   .split(",")
-  .map((o) => o.trim());
+  .map((origin) => origin.trim().replace(/\/+$/, ""))
+  .filter(Boolean);
+
+if (isProduction && configuredOrigins.length === 0) {
+  throw new Error(
+    "CORS_ORIGIN é obrigatório em produção. Exemplo: https://nexa94fc.vercel.app"
+  );
+}
+
+// Em desenvolvimento, localhost é sempre permitido.
+// Em produção, somente os domínios definidos em CORS_ORIGIN.
+const localOrigins = ["http://localhost:5173", "http://127.0.0.1:5173"];
+const allowedOrigins = isProduction
+  ? configuredOrigins
+  : [...new Set([...localOrigins, ...configuredOrigins])];
 
 app.use(cors({ origin: allowedOrigins }));
 app.use(express.json());

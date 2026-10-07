@@ -1,4 +1,6 @@
 # Database
 
-PostgreSQL será configurado em uma etapa futura.
-Aqui ficarão as migrations e os scripts SQL.
+PostgreSQL hospedado no Neon.
+
+- `migrations/` guarda os scripts SQL em ordem numérica.
+- Para aplicar: `cd backend && npm run migrate`

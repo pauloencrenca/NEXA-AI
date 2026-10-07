@@ -38,3 +38,11 @@ Backend:  http://localhost:3001/api/health
 
 ## Status
 Etapa 1: estrutura inicial + landing page.
+Etapa 2: PostgreSQL (Neon) + cadastro de empresa.
+
+### Banco de dados
+Coloque a connection string do Neon em `backend/.env` (DATABASE_URL) e rode:
+```
+cd backend
+npm run migrate
+```

@@ -1,9 +1,7 @@
+import { Link } from "react-router-dom";
 import ChatPreview from "./ChatPreview.jsx";
 
 export default function Hero() {
-  // Placeholder: será conectado ao cadastro quando o login existir.
-  const handleStart = () => {};
-
   return (
     <section className="hero">
       <div className="hero__glow hero__glow--purple" />
@@ -25,9 +23,9 @@ export default function Hero() {
           </p>
 
           <div className="hero__actions">
-            <button className="btn btn--primary" onClick={handleStart}>
+            <Link className="btn btn--primary" to="/cadastro">
               Começar agora
-            </button>
+            </Link>
             <a className="btn btn--ghost" href="#plataforma">
               Conhecer a plataforma
             </a>
